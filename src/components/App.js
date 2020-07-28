@@ -15,12 +15,34 @@ function App(props) {
     farm: 0,
   });
 
+  const stuff = [
+    { id: "cursor", name: "Cursor", cost: 10, value: 1 },
+    { id: "grandma", name: "Grandma", cost: 100, value: 10 },
+    { id: "farm", name: "Farm", cost: 1000, value: 80 },
+  ];
+
+  const calculateCookiesPerSecond = (purchasedItems) => {
+    return Object.keys(purchasedItems).reduce((acc, itemId) => {
+      const numOwned = purchasedItems[itemId];
+      const item = stuff.find((item) => item.id === itemId);
+      const value = item.value;
+
+      return acc + value * numOwned;
+    }, 0);
+  };
   return (
     <>
       <GlobalStyles />
       <Router>
         <Route exact path="/">
-          <Home />
+          <Home
+            cookies={numCookies}
+            setCookies={setNumCookies}
+            items={purchasedItems}
+            setItems={setPurchasedItems}
+            stuff={stuff}
+            calculateCookiesPerSecond={calculateCookiesPerSecond}
+          />
         </Route>
         <Route path="/game">
           <Game
@@ -28,6 +50,8 @@ function App(props) {
             setCookies={setNumCookies}
             items={purchasedItems}
             setItems={setPurchasedItems}
+            stuff={stuff}
+            calculateCookiesPerSecond={calculateCookiesPerSecond}
           />
         </Route>
       </Router>

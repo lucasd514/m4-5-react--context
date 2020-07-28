@@ -5,12 +5,11 @@ function usePersisted(name, initialValue) {
   const [value, setValue] = useState(() => {
     //This functions decides if to return the initial value or
     //return a value from localStorage
-
-    console.log(name);
-    console.log(initialValue);
-    console.log(window.localStorage);
+    // console.log(name);
+    // console.log(initialValue);
+    // console.log(window.localStorage);
     const storageValue = window.localStorage.getItem(name);
-    console.log(storageValue);
+    // console.log(storageValue);
     if (
       storageValue === 0 ||
       storageValue === "undefined" ||
@@ -23,6 +22,8 @@ function usePersisted(name, initialValue) {
       return JSON.parse(storageValue);
     }
   });
+
+  console.log("this is the value", value);
 
   //   Take the value and put it in Local Storage
   useEffect(() => {
