@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import usePersisted from "../hooks/use-presisted.hook";
-import useInterval from "../hooks/use-interval.hook";
+
+import { GameContext } from "../components/GameContext";
 
 const Home = ({
   calculateCookiesPerSecond,
@@ -12,8 +12,10 @@ const Home = ({
   setItems,
   items,
 }) => {
+  const { numCookies } = useContext(GameContext);
+
   React.useEffect(() => {
-    document.title = `${cookies} cookies - Cookie Clicker Workshop`;
+    document.title = `${numCookies} cookies - Cookie Clicker Workshop`;
 
     return () => {
       document.title = "Cookie Clicker Workshop";
