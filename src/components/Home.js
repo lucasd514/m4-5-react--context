@@ -20,12 +20,6 @@ const Home = ({
     };
   });
 
-  useInterval(() => {
-    const numOfGeneratedCookies = calculateCookiesPerSecond(items);
-
-    setCookies(cookies + numOfGeneratedCookies);
-  }, 1000);
-
   return (
     <Wrapper>
       <Title>Cookie game</Title>

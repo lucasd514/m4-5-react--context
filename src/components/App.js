@@ -13,7 +13,6 @@ function App(props) {
     purchasedItems,
     setPurchasedItems,
     stuff,
-    calculateCookiesPerSecond,
   } = useContext(GameContext);
 
   return (
@@ -21,14 +20,7 @@ function App(props) {
       <GlobalStyles />
       <Router>
         <Route exact path="/">
-          <Home
-            cookies={numCookies}
-            setCookies={setNumCookies}
-            items={purchasedItems}
-            setItems={setPurchasedItems}
-            stuff={stuff}
-            calculateCookiesPerSecond={calculateCookiesPerSecond}
-          />
+          <Home />
         </Route>
         <Route path="/game">
           <Game
@@ -37,7 +29,6 @@ function App(props) {
             items={purchasedItems}
             setItems={setPurchasedItems}
             stuff={stuff}
-            calculateCookiesPerSecond={calculateCookiesPerSecond}
           />
         </Route>
       </Router>

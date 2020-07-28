@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 function usePersisted(name, initialValue) {
+  window.localStorage.clear();
+
   //This is to get the Value from Local Storage and put it in a state variable
   const [value, setValue] = useState(() => {
     //This functions decides if to return the initial value or
@@ -28,7 +30,7 @@ function usePersisted(name, initialValue) {
   //   Take the value and put it in Local Storage
   useEffect(() => {
     window.localStorage.setItem(name, JSON.stringify(value));
-  }, [value]);
+  }, [name, value]);
 
   //Very Important
   return [value, setValue];

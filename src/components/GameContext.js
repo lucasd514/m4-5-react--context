@@ -1,5 +1,6 @@
 import React from "react";
 import usePersisted from "../hooks/use-presisted.hook";
+import useInterval from "../hooks/use-interval.hook";
 export const GameContext = React.createContext(null);
 
 export const GameProvider = ({ children }) => {
@@ -27,17 +28,21 @@ export const GameProvider = ({ children }) => {
     }, 0);
   };
 
+  useInterval(() => {
+    setNumCookies(
+      Number(numCookies) + calculateCookiesPerSecond(purchasedItems)
+    );
+  }, 1000);
+
   return (
     <GameContext.Provider
       value={{
-        numCookies,
+        numCookies: Number(numCookies),
         setNumCookies,
         purchasedItems,
         setPurchasedItems,
         stuff,
-        calculateCookiesPerSecond: (purcahsedItems) => {
-          calculateCookiesPerSecond(purchasedItems);
-        },
+        calculateCookiesPerSecond,
       }}
     >
       {children}
