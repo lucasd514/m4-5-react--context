@@ -9,7 +9,7 @@ function App(props) {
   const [numCookies, setNumCookies] = usePersisted("use-cookies", 1000);
   //const [numCookies, setNumCookies] = React.usePersistedState('numCookies',1000);
 
-  const [purchasedItems, setPurchasedItems] = React.useState({
+  const [purchasedItems, setPurchasedItems] = usePersisted("items", {
     cursor: 0,
     grandma: 0,
     farm: 0,
